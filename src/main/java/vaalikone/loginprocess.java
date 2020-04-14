@@ -28,9 +28,7 @@ public class loginprocess extends HttpServlet {
 		String loginID = request.getParameter("id");
 		String loginpassword = request.getParameter("password");
 		String cryptedloginpassword = Crypt(loginpassword);
-		boolean LoginOK = false;
 		List<Ehdokkaat> ehdokas = null;
-		String username = "";
 
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("vaalikones");
 		EntityManager em = emf.createEntityManager();
@@ -42,8 +40,6 @@ public class loginprocess extends HttpServlet {
 			q.setParameter(2, cryptedloginpassword);
 			ehdokas = q.getResultList();
 			
-			
-
 			if (ehdokas.size() > 0) {
 
 				HttpSession session = request.getSession(true);
@@ -57,7 +53,6 @@ public class loginprocess extends HttpServlet {
 					
 				}
 				
-				request.setAttribute("käyttäjä", usr);
 				request.setAttribute("käyttäjä", usr);
 				request.setAttribute("ehdokas", ehdokas);
 				request.getRequestDispatcher("/ehdokaspage.jsp").forward(request, response);
@@ -81,6 +76,32 @@ public class loginprocess extends HttpServlet {
 	}
 	
 	public static String Crypt(String str) {
+        if (str == null || str.length() == 0) {
+            throw new IllegalArgumentException("String to encript cannot be null or zero length");
+        }
+
+        MessageDigest digester;
+        try {
+            digester = MessageDigest.getInstance("MD5");
+
+            digester.update(str.getBytes());
+            byte[] hash = digester.digest();
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < hash.length; i++) {
+                if ((0xff & hash[i]) < 0x10) {
+                    hexString.append("0" + Integer.toHexString((0xFF & hash[i])));
+                } else {
+                    hexString.append(Integer.toHexString(0xFF & hash[i]));
+                }
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+	
+	public static String crypt(String str) {
         if (str == null || str.length() == 0) {
             throw new IllegalArgumentException("String to encript cannot be null or zero length");
         }
