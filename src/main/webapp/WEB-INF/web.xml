@@ -12,12 +12,7 @@
     <servlet-name>Vaalikone</servlet-name>
     <servlet-class>vaalikone.Vaalikone</servlet-class>
   </servlet>
-  
-    <servlet>
-    <servlet-name>VastausEdit</servlet-name>
-    <servlet-class>vaalikone.VastausEdit</servlet-class>
-  </servlet>
-  
+
       <servlet>
     <servlet-name>loginprocess</servlet-name>
     <servlet-class>vaalikone.loginprocess</servlet-class>
@@ -27,12 +22,7 @@
     <servlet-name>Vaalikone</servlet-name>
     <url-pattern>/Vaalikone</url-pattern>
   </servlet-mapping>
-  
-    <servlet-mapping>
-    <servlet-name>VastausEdit</servlet-name>
-    <url-pattern>/VastausEdit</url-pattern>
-  </servlet-mapping>
-  
+
       <servlet-mapping>
     <servlet-name>loginprocess</servlet-name>
     <url-pattern>/loginprocess</url-pattern>

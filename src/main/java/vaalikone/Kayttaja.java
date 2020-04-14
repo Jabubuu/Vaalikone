@@ -9,8 +9,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -22,6 +20,10 @@ public class Kayttaja implements Serializable {
     /**
 	 * 
 	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
 //	private static final long serialVersionUID = 3262098698622771486L;
 	/**
 	 * 
@@ -31,8 +33,22 @@ public class Kayttaja implements Serializable {
 	private ArrayList<Integer> vastaus = new ArrayList<>(20);
     ArrayList<Tuple<Integer, Integer>> pisteet = new ArrayList<>(20);
     private final static Logger logger = Logger.getLogger(Loki.class.getName());
+    String username="";
+    String password="";
 
-    /**
+    public String getusername() {
+		return username;
+	}
+	public void setusername(String id) {
+		this.username = id;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	/**
      * Kayttaja-olioon tallennetaan vaalikoneen käyttäjän tietoja.
      */
 //    public Kayttaja() {
@@ -45,6 +61,7 @@ public class Kayttaja implements Serializable {
 //
 //    }
 
+    
     public void taytaVastauksetJaPisteet() {
 
         //täytelläänhän listat valmiiksi

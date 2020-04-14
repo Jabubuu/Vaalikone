@@ -77,6 +77,7 @@ public class Ehdokkaat implements Serializable {
      *
      */
     public Ehdokkaat() {
+    	super();
     }
 
     /**
