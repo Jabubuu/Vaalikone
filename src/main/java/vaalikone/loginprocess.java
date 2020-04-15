@@ -29,6 +29,8 @@ public class loginprocess extends HttpServlet {
 		String loginpassword = request.getParameter("password");
 		String cryptedloginpassword = Crypt(loginpassword);
 		List<Ehdokkaat> ehdokas = null;
+		String username = "";
+		int userid;
 
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("vaalikones");
 		EntityManager em = emf.createEntityManager();
@@ -46,14 +48,22 @@ public class loginprocess extends HttpServlet {
 				Kayttaja usr = (Kayttaja) session.getAttribute("usrobj");
 				if (usr == null) {
 					usr = new Kayttaja();
-					session.setAttribute("usrobj", usr);
-					Ehdokkaat e = new Ehdokkaat();
-					usr.setusername(e.getEtunimi());
-					usr.setPassword(loginpassword);
 					
 				}
 				
-				request.setAttribute("käyttäjä", usr);
+                for (Ehdokkaat loginehdokas : ehdokas) {
+                	username = loginehdokas.getEtunimi() + " " + loginehdokas.getSukunimi();
+                	userid = loginehdokas.getEhdokasId();
+                	usr.setusername(username);
+                	usr.setuserid(userid);
+                	
+                	session.setAttribute("usrobj", usr);
+                	session.setAttribute("userid", userid);
+                	session.setAttribute("loginname", username);
+
+                }
+				
+                request.setAttribute("user", usr);
 				request.setAttribute("ehdokas", ehdokas);
 				request.getRequestDispatcher("/ehdokaspage.jsp").forward(request, response);
 

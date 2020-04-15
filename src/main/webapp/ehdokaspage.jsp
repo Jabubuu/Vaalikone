@@ -25,20 +25,15 @@
 	<%
 	
 	List<Ehdokkaat> ehdokas = (List<Ehdokkaat>) request.getAttribute("ehdokas");
-	Kayttaja usr = (Kayttaja) request.getAttribute("käyttäjä");
+	Kayttaja usr = (Kayttaja) request.getAttribute("user");
 	
 	%>
-	<p> <%= request.getParameter("id")%> </p>
-	<p> <%= request.getParameter("password")%> </p>
-	<br><br>
-		<p> <%= usr.getusername()%> </p>
-		<p> <%= usr.getPassword()%> </p>
-	<br>
 	
-	<% 
+	<h1> Tervetuloa <%= session.getAttribute("loginname")%></h1>
+	<h1> ID:  <%= session.getAttribute("userid")%></h1>
 
-                for (Ehdokkaat haettuEhdokas : ehdokas) {
-            %>
+              	<%  for (Ehdokkaat haettuEhdokas : ehdokas) { %>
+            
 			<h2>Tiedot:</h2>
             <h3>Ehdokas numero: <%= haettuEhdokas.getEhdokasId()%></h3>
             <ul>
@@ -58,7 +53,7 @@
 	
 	
 	<br>
-				<form action="logout" method="post" id="loginForm">
+				<form action="testi.jsp" method="post" id="loginForm">
 				<button type="submit">Takaisin</button>
 			</form>
  </div>

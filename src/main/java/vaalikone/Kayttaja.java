@@ -34,7 +34,7 @@ public class Kayttaja implements Serializable {
     ArrayList<Tuple<Integer, Integer>> pisteet = new ArrayList<>(20);
     private final static Logger logger = Logger.getLogger(Loki.class.getName());
     String username="";
-    String password="";
+    int userid;
 
     public String getusername() {
 		return username;
@@ -42,11 +42,11 @@ public class Kayttaja implements Serializable {
 	public void setusername(String id) {
 		this.username = id;
 	}
-	public String getPassword() {
-		return password;
+	public int getuserid() {
+		return userid;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setuserid(int userid) {
+		this.userid = userid;
 	}
 	/**
      * Kayttaja-olioon tallennetaan vaalikoneen käyttäjän tietoja.
