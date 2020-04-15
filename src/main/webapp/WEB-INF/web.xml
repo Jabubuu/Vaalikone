@@ -17,6 +17,16 @@
     <servlet-name>Vaalikone</servlet-name>
     <url-pattern>/Vaalikone</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>PoistaMuokkaa</servlet-name>
+    <servlet-class>vaalikone.PoistaMuokkaa</servlet-class>
+  </servlet>  
+  <servlet-mapping>
+    <servlet-name>PoistaMuokkaa</servlet-name>
+    <url-pattern>/PoistaMuokkaa</url-pattern>
+  </servlet-mapping>
+  
   <session-config>
     <session-timeout>30</session-timeout>
   </session-config>

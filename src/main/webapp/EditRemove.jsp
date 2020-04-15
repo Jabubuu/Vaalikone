@@ -26,7 +26,17 @@
         	<label for="fname">Poistettavan vastauksen Id:</label>
         	<input type="hidden" name="func" value="Ehdokas"><br>
   			<input type="text" name="Poista"><br>
-        	<input id="Nappi" type="submit" Value="Poista">                  
+        	<input id="Nappi" type="submit">                  
+        </form>
+        <form action="#" method="GET">
+        	<label for="fname">Muokkatavan vastauksen Id:</label>
+        	<input type="hidden" name="func" value="Ehdokas"><br>
+  			<input type="text" name="Muokkaa"><br>
+  			<label for="fname">Uusi vastaus numero 1-5:</label><br>
+  			<input type="text" name="UusiVastaus"><br>
+  			<label for="fname">Uusi kommentti:</label><br>
+  			<input type="text" name="UusiKommentti"><br>
+        	<input id="Nappi" type="submit">                  
         </form>
 </body>
 </html>

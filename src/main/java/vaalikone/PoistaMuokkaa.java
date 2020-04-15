@@ -69,8 +69,15 @@ public class PoistaMuokkaa extends HttpServlet {
           	return;
         }
         
+        //Jotta lista kysymyksist‰ ja vastauksista aukee tulee t‰lle l‰hett‰‰ parametri func="ehdokas"
+        //Muut parametrit tulee omasta jsp:st‰
+        
         String strFunc = request.getParameter("func");
-        String Poista = request.getParameter("Poista");
+        String Poista = request.getParameter("Poista");// Kysymyksen ID
+        
+        String Muokkaa = request.getParameter("Muokkaa");//Kysymyksen ID
+        String UVastaus = request.getParameter("UusiVastaus");// uusi vastaus
+        String UKommentti = request.getParameter("UusiKommentti");// uusi kommentti
         
         if (strFunc.equals("Ehdokas")){
         	
@@ -86,7 +93,19 @@ public class PoistaMuokkaa extends HttpServlet {
         		Poistettu.get(0).setKommentti("Ei kommenttia");
         		em.getTransaction().commit();
         	}
-        	
+        	if (Muokkaa != null){
+        		em.getTransaction().begin();
+        		int id = Integer.parseInt(Muokkaa);
+        		int IntVastaus = Integer.parseInt(UVastaus);
+//        		Query q = em.createQuery("UPDATE vaalikone.vastaukset SET VASTAUS = 1 WHERE EHDOKAS_ID = 1 AND KYSYMYS_ID = 1");
+        		Query q = em.createQuery("SELECT v FROM Vastaukset v WHERE v.vastauksetPK.ehdokasId=?1 AND v.vastauksetPK.kysymysId=?2");
+        		q.setParameter(1, 1);//ehdokas param
+        		q.setParameter(2, id);//Kysymyksen param
+        		List<Vastaukset> Poistettu = q.getResultList();
+        		Poistettu.get(0).setVastaus(IntVastaus);
+        		Poistettu.get(0).setKommentti(UKommentti);
+        		em.getTransaction().commit();
+        	}
         	Query q = em.createQuery(
                     "SELECT k FROM Kysymykset k");
             List<Kysymykset> kaikkiKysymykset = q.getResultList();
