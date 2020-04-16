@@ -1,4 +1,4 @@
-edit > P8references > SQL Editor > scrollaa alas ja  Safe Updates vittuu
+edit > Preferences > SQL Editor > scrollaa alas ja  Safe Updates vittuu
 
 
 
