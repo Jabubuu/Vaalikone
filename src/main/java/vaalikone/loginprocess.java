@@ -30,6 +30,7 @@ public class loginprocess extends HttpServlet {
 		String cryptedloginpassword = Crypt(loginpassword);
 		List<Ehdokkaat> ehdokas = null;
 		String username = "";
+		String func = "";
 		int userid;
 
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("vaalikones");
@@ -57,9 +58,11 @@ public class loginprocess extends HttpServlet {
                 	usr.setusername(username);
                 	usr.setuserid(userid);
                 	
+                	func = "Kayttaja";
                 	session.setAttribute("usrobj", usr);
                 	session.setAttribute("userid", userid);
                 	session.setAttribute("loginname", username);
+                	session.setAttribute("func", func);
 
                 }
 				
