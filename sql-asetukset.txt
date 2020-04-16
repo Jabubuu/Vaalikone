@@ -1,4 +1,5 @@
 edit > Preferences > SQL Editor > scrollaa alas ja  Safe Updates vittuu
+Tuplaklikkaa SCHEMASissa vaalikone-databasea
 
 
 
