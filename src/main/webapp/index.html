@@ -5,26 +5,56 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <title>Diginide vaalikone</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="style.css" rel="stylesheet" type="text/css">
-        
-    </head>
-    <body>
-        <div id="container">
-            
-            <img id="headerimg" src="Logo.png" width="720" />
-            <div class="kysymys">
-                <h1>Vaalikone</h1>
-            </div>
-                <br>
-                                <form action="Vaalikone">
-                                <input id="submitnappi" type="submit" value="Aloita" name="btnAloita" />                   
-                                </form>
-           
-           
-        </div>
-    </body>
+<head>
+<title>Diginide vaalikone</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="style.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+	<div id="container">
+
+		<img id="headerimg" src="Logo.png" width="720" />
+		<div class="kysymys">
+			<h1>Vaalikone</h1>
+		</div>
+		<br>
+		<form action="Vaalikone">
+			<input id="submitnappi" type="submit" value="Aloita" name="btnAloita" />
+		</form>
+		<br>
+		<button onclick="myFunction()" input id="submitnappi">Ehdokas
+			Login</button>
+
+		<div id="login" style="display: none;">
+			<form action="loginprocess" method="get" id="loginForm">
+
+				<label for="username"><b>Käyttäjätunnus</b></label> <br> 
+				<input name="username" size="30" required minlength="1" maxlength="6"> 
+					<br>
+				<label for="password"><b>Salasana</b></label> <br> 
+				<input type="password" name="password" size="30" required> 
+				<br>
+				<input type="reset" value="Reset">
+					<br><br>
+				<button type="submit">Kirjaudu</button>
+			</form>
+		</div>
+	</div>
+
+	<script>
+		function myFunction() {
+			var x = document.getElementById("login");
+			if (x.style.display === "none") {
+				x.style.display = "block";
+			} else {
+				x.style.display = "none";
+			}
+		}
+		
+
+	</script>
+
+</body>
 </html>
