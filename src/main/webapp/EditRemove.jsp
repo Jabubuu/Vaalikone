@@ -20,7 +20,9 @@
 		<form><%
 	    for (int i = 0; i < kaikkiKysymykset.size(); i++) {
             if (KayttajanVastaukset.get(i).getVastaus() == null){%>
-          	<%
+            <label>Kysymys <%= i + 1%>:<%= kaikkiKysymykset.get(i).getKysymys()%></label><br>
+       		<label>Vastaus: Ei vastausta</label><br>
+       		<lable>Kommentti: Ei Kommenttia</label><br><br><%
             }
             else{
             VastausNum = KayttajanVastaukset.get(i).getVastaus();
@@ -31,7 +33,7 @@
        		<lable>Kommentti: <%= Kommentti%></label><br><br><%
             	}
             }
-	    	%>
+			%>
 	    	</form>
         <form action="#" method="GET">
         	<label for="fname">Poistettavan vastauksen Id:</label>
