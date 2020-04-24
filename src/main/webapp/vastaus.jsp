@@ -36,6 +36,14 @@
                     <label>3</label><input type="radio" name="vastaus" value="3" checked="checked" />
                     <label>4</label><input type="radio" name="vastaus" value="4" />
                     <label>5</label><input type="radio" name="vastaus" value="5" />
+                    <%
+                    	if (session.getAttribute("ID") != null){
+                    		%>
+                    		<label for="fname">Kommentti:</label><br>
+  							<input type="text" name="kommentti"><br>
+                    		<%
+                    	}
+                    %>
                     <input type="hidden" name="q" value="<%= kysymys.getKysymysId() %>">
                     <input type="submit" id="submitnappi" value="Vastaa" />
                 </form>

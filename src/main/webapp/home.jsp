@@ -46,7 +46,7 @@ kayttaja = (List<Ehdokkaat>) session.getAttribute("kayttaja");
 			<button type="submit">Muokkaa vastauksia</button>
 		</form>
 
-		<form action="vastaus.jsp" method="post">
+		<form action="Vaalikone" method="post">
 			<button type="submit">Vastaa kysymyksiin</button>
 		</form>
 		<br>
