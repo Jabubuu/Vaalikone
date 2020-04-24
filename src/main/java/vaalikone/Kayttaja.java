@@ -33,7 +33,7 @@ public class Kayttaja implements Serializable {
 	private ArrayList<Integer> vastaus = new ArrayList<>(20);
     ArrayList<Tuple<Integer, Integer>> pisteet = new ArrayList<>(20);
     private final static Logger logger = Logger.getLogger(Loki.class.getName());
-    String username="";
+    String username="kansalainen";
     int userid;
 
     public String getusername() {
