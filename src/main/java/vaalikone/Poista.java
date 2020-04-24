@@ -60,17 +60,9 @@ public class Poista extends HttpServlet {
             		request.getRequestDispatcher("home.jsp").forward(request, response);
 
         	}	else {
-        		System.out.println("Tyhjä tai vaara ID");
+        		System.out.println("Tyhja tai vaara ID");
         		request.getRequestDispatcher("EditError.jsp").forward(request, response);
         	}
-        	
-        	
-
-        	
-//        	  List<Kysymykset> kaikkiKysymykset = ehdokas.haeKysymykset();
-//        	  List<Vastaukset> KayttajanVastaukset = ehdokas.haeVastaukset();
-//            request.setAttribute("kaikkiKysymykset", kaikkiKysymykset);
-//            request.setAttribute("KayttajanVastaukset", KayttajanVastaukset);
 
         }
     

@@ -19,25 +19,27 @@
 <%  
 
 String title = "";
+String editTeksti = "";
 String userID = "";
 String user = "";
 List<Ehdokkaat> kayttaja = null;
 
 // Check if this is new comer on your Webpage.
 if (session.isNew()){
-	
 	userID = (String)request.getAttribute("ehdokasID");
    title = "Terve, ehdokas numero: " + userID;
+   
    session.setAttribute("ID",userID);
 	kayttaja = (List<Ehdokkaat>) request.getAttribute("kayttaja");
 	session.setAttribute("kayttaja", kayttaja);
-} 
+}
 
 userID = (String)session.getAttribute("ID");
 kayttaja = (List<Ehdokkaat>) session.getAttribute("kayttaja");
 
   %>  
-  <p><%= title%></p>  
+  <p><%= title%></p>
+  <p><%= editTeksti%></p>  
 
 
 		<br>
@@ -46,7 +48,7 @@ kayttaja = (List<Ehdokkaat>) session.getAttribute("kayttaja");
 			<button type="submit">Muokkaa vastauksia</button>
 		</form>
 
-		<form action="vastaus.jsp" method="post">
+		<form action="Vaalikone" method="post">
 			<button type="submit">Vastaa kysymyksiin</button>
 		</form>
 		<br>

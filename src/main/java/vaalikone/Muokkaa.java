@@ -33,10 +33,10 @@ public class Muokkaa extends HttpServlet {
         String Muokkaa = request.getParameter("Muokkaa");//Kysymyksen ID
         String UVastaus = request.getParameter("UusiVastaus");// uusi vastaus
         String UKommentti = request.getParameter("UusiKommentti");// uusi kommentti
-        String tyhja = "";
-
-        	if (Muokkaa != null){
-        		
+        String editTeksti = "";
+        	
+        	if((Muokkaa != null) && (Integer.parseInt(Muokkaa)) < 20 && (Integer.parseInt(UVastaus))< 20){
+        
                 try {
                     EntityManagerFactory  emf=Persistence.createEntityManagerFactory("vaalikones");
                     EntityManager em = emf.createEntityManager();
@@ -59,19 +59,18 @@ public class Muokkaa extends HttpServlet {
                   catch(Exception e) {
                 	  e.printStackTrace();
                   }
+                
                 System.out.println("Kysymys id: " + Muokkaa + " muokattu");
+                editTeksti = "Vastaus nro: " + Muokkaa + " muokkaus onnistui";
+                request.setAttribute("edit", editTeksti);
             		request.getRequestDispatcher("home.jsp").forward(request, response);
-
         	}
-
-        	
-//        	  List<Kysymykset> kaikkiKysymykset = ehdokas.haeKysymykset();
-//        	  List<Vastaukset> KayttajanVastaukset = ehdokas.haeVastaukset();
-//            request.setAttribute("kaikkiKysymykset", kaikkiKysymykset);
-//            request.setAttribute("KayttajanVastaukset", KayttajanVastaukset);
-
-        }
-    
+            		else {
+                		System.out.println("Tyhja tai vaara ID");
+                		request.getRequestDispatcher("EditError.jsp").forward(request, response);
+                	}
+        	}
+        
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

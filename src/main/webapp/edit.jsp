@@ -32,7 +32,7 @@ List<Kysymykset> kaikkiKysymykset = (List<Kysymykset>) request.getAttribute("kai
 session.setAttribute("kaikkiKysymykset", kaikkiKysymykset);
   %>  
 
-Terve, ehdokas nr: <%= userID%> <br>
+<br><br>
 
 		<form action="Poista" method="GET">
 
@@ -58,7 +58,7 @@ Terve, ehdokas nr: <%= userID%> <br>
         	<button type="submit">Muokkaa</button>   
         	              
         </form>
-
+<br><br>
  <%
  
 
