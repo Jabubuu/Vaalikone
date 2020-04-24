@@ -11,7 +11,7 @@
 	height: auto;
 	margin-left: auto;
 	margin-right: auto;
-	background-image: url(images/concrete_seamless.png);
+
 	padding: 20px;
         font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -21,7 +21,7 @@
 hidden="true"
 }
 body {
-	background-image: url(images/wild_oliva.png);
+
 	padding: 10;
 	background-repeat: repeat;
 }
