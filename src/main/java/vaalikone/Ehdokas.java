@@ -20,6 +20,7 @@ public class Ehdokas {
 	private String sukunimi;
 	private String etunimi;
 	private String salasana;
+	private String tunnus;
     List<Ehdokkaat> kayttaja = null;
     List<Kysymykset> kysymykset = null;
     List<Vastaukset> vastaukset = null;
@@ -96,6 +97,14 @@ public class Ehdokas {
 		this.salasana = salasana;
 	}
 
+	public String getTunnus() {
+		return tunnus;
+	}
+
+	public void setTunnus(String tunnus) {
+		this.tunnus = tunnus;
+	}
+
 	public List<Ehdokkaat> haeTiedot() {
 		
 		try {
@@ -103,12 +112,9 @@ public class Ehdokas {
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("vaalikones");
 			EntityManager em = emf.createEntityManager();
 
-			Query q = em.createQuery("SELECT e FROM Ehdokkaat e WHERE e.ehdokasId=?1 and e.salasana=?2");
+			Query q = em.createQuery("SELECT e FROM Ehdokkaat e WHERE e.ehdokasId=?1");
 			q.setParameter(1, Integer.parseInt(ehdokasId));
-			q.setParameter(2, Crypt.crypt(salasana));
 			kayttaja = q.getResultList();
-			
-
 				if (em.getTransaction().isActive()) {
 					em.getTransaction().rollback();
 				}
@@ -181,9 +187,10 @@ public class Ehdokas {
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("vaalikones");
 			EntityManager em = emf.createEntityManager();
 
-			Query q = em.createQuery("SELECT e FROM Ehdokkaat e WHERE e.ehdokasId=?1 and e.salasana=?2");
-			q.setParameter(1, Integer.parseInt(ehdokasId));
-			q.setParameter(2, Crypt.crypt(salasana));
+			Query q = em.createQuery("SELECT e FROM Ehdokkaat e WHERE e.salasana=?1 and e.tunnus=?2");
+
+			q.setParameter(1, Crypt.crypt(salasana));
+			q.setParameter(2, tunnus);
 			kayttaja = q.getResultList();
 			
 

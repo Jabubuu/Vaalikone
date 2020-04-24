@@ -132,7 +132,6 @@ public class Vaalikone extends HttpServlet {
                 	
                 	}
                 }
-
                 //määritä seuraavaksi haettava kysymys
                 kysymys_id++;
             }                        
@@ -159,22 +158,25 @@ public class Vaalikone extends HttpServlet {
                 }
 
                 //jos kysymykset loppuvat, lasketaan tulos!
-            } else {
-            	if(session.getAttribute("ID").equals(null)) {
-	                //Tyhjennetään piste-array jotta pisteet eivät tuplaannu mahdollisen refreshin tapahtuessa
-	                for (int i = 0; i < 20; i++) {
-	                    usr.pisteet.set(i, new Tuple<>(0, 0));
-	                }
-	
-	                //Hae lista ehdokkaista
-	                Query qE = em.createQuery(
-	                        "SELECT e.ehdokasId FROM Ehdokkaat e"
-	                );
-	                List<Integer> ehdokasList = qE.getResultList();
-	
-	                //iteroi ehdokaslista läpi
-	                for (int i = 1; i < ehdokasList.size(); i++) {
-	
+            } 
+            else {
+            	
+                if(session.getAttribute("ID") != null) {
+                	strFunc = "palaa";
+            	}
+                else {            		
+                	//Tyhjennetään piste-array jotta pisteet eivät tuplaannu mahdollisen refreshin tapahtuessa
+                	for (int i = 0; i < 20; i++) {
+                		usr.pisteet.set(i, new Tuple<>(0, 0));
+                	}
+
+                	//Hae lista ehdokkaista
+                	Query qE = em.createQuery("SELECT e.ehdokasId FROM Ehdokkaat e");
+                	List<Integer> ehdokasList = qE.getResultList();
+
+                //iteroi ehdokaslista läpi
+                	for (int i = 1; i < ehdokasList.size(); i++) {
+
 	                    //Hae lista ehdokkaiden vastauksista
 	                    Query qV = em.createQuery(
 	                            "SELECT v FROM Vastaukset v WHERE v.vastauksetPK.ehdokasId=?1");
@@ -193,18 +195,10 @@ public class Vaalikone extends HttpServlet {
 	
 	                        logger.log(Level.INFO, "eID: {0} / k: {1} / kV: {2} / eV: {3} / p: {4}", new Object[]{i, eVastaus.getVastauksetPK().getKysymysId(), usr.getVastaus(i), eVastaus.getVastaus(), pisteet});
 	                        usr.addPisteet(i, pisteet);
-	                    }
-	
-	                }
-            	}
-                if(session.getAttribute("ID") != null) {
-                	strFunc = "palaa";
-            	}
-                else {
-                	strFunc = "haeEhdokas";
+	                    	}            
+                	}
+                strFunc = "haeEhdokas";
                 }
-            }
-
         }
 
         //jos func-arvo on haeEhdokas, haetaan haluttu henkilö käyttäjälle sopivimmista ehdokkaista
@@ -253,9 +247,9 @@ public class Vaalikone extends HttpServlet {
             em.close();
 
         }
-        if ("palaa".equals(strFunc)) {
-        	request.getRequestDispatcher("/home.jsp")
-            .forward(request, response);
+	        if("palaa".equals(strFunc)) {
+	        	request.getRequestDispatcher("/home.jsp").forward(request, response);
+	        }
         }
         
 

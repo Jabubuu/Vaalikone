@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import persist.Ehdokkaat;  
+import persist.Ehdokkaat;
+
 
 public class Controller extends HttpServlet {  
     /**
@@ -22,22 +23,34 @@ public class Controller extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)  
             throws ServletException, IOException {  
 
-        String ehdokasID=request.getParameter("id");  
-        String salasana=request.getParameter("password");  
-        Ehdokas ehdokas = new Ehdokas();
-        ehdokas.setEhdokasId(ehdokasID);  
-        ehdokas.setSalasana(salasana);   
+
+        String tunnus=request.getParameter("tunnus");  
+        String salasana=request.getParameter("password");
+        String haettuID = "";
+        Ehdokas ehdokas = new Ehdokas(); 
+        ehdokas.setSalasana(salasana);  
+        ehdokas.setTunnus(tunnus);
 
         boolean status=ehdokas.validate();
         
 
         if(status){  
         	
+        	
         	 HttpSession session=request.getSession();
         	 session.invalidate();
+        	 List<Ehdokkaat> lista = null;
+        	 lista = ehdokas.haeTiedot();
+        	 for (Ehdokkaat haettuEhdokas : lista) {
+        		 
+        		 haettuID = String.valueOf(haettuEhdokas.getEhdokasId());
+        	 }
+        	 
+
         	request.setAttribute("kayttaja", ehdokas.haeTiedot());
+
         	request.setAttribute("ehdokas", ehdokas);
-        	request.setAttribute("ehdokasID", ehdokasID);
+        	request.setAttribute("ehdokasID", haettuID);
             RequestDispatcher rd=request.getRequestDispatcher("home.jsp");  
             rd.forward(request, response);  
         }  
