@@ -29,7 +29,6 @@ public class Poista extends HttpServlet {
     	int eID = Integer.parseInt(request.getParameter("ehdokasID"));
         Ehdokas ehdokas = new Ehdokas();
         ehdokas.setEhdokasId(Integer.toString(eID)); 
-        String editTeksti = "";
         
         String PoistaID = request.getParameter("id");// Kysymyksen ID
 
@@ -57,9 +56,7 @@ public class Poista extends HttpServlet {
                   catch(Exception e) {
                 	  e.printStackTrace();
                   }
-                editTeksti = "Vastaus nro: " + PoistaID + " tiedot poistettu";
-                request.setAttribute("edit", editTeksti);
-               // System.out.println("Kysymys id: " + PoistaID + " poistettu");
+                System.out.println("Kysymys id: " + PoistaID + " poistettu");
             		request.getRequestDispatcher("home.jsp").forward(request, response);
 
         	}	else {
@@ -68,7 +65,7 @@ public class Poista extends HttpServlet {
         	}
 
         }
-
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

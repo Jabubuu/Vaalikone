@@ -16,7 +16,7 @@ and open the template in the editor.
 	<div id="container">
 		<img id="headerimg" src="Logo.png" width="720" />
 		<div class="message">
-			<h1>Virhe kirjautumisessa, tarkista Id tai salasana</h1>
+			<h1>Virhe kirjautumisessa, tarkista Käyttäjätunnus tai Salasana</h1>
 		</div>
 		<br>
 	<br>

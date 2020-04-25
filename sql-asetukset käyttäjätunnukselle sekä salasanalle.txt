@@ -1,0 +1,14 @@
+edit > Preferences > SQL Editor > scrollaa alas ja  Safe Updates pois
+Tuplaklikkaa SCHEMASissa vaalikone-databasea
+
+
+
+ALTER TABLE ehdokkaat
+ADD COLUMN KAYTTAJATUNNUS VARCHAR(50) AFTER etunimi;
+------------------------------------------------------------------
+UPDATE ehdokkaat SET KAYTTAJATUNNUS = concat(substring(ETUNIMI, 1, 3), substring(SUKUNIMI, 1, 3))
+------------------------------------------------------------------
+ALTER TABLE ehdokkaat
+ADD COLUMN salasana VARCHAR(32) AFTER kayttajatunnus;
+------------------------------------------------------------------
+UPDATE ehdokkaat set SALASANA = 'e7e941b1f09f266540c6780db51d5f58';

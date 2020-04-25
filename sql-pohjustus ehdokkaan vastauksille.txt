@@ -1,0 +1,38 @@
+INSERT INTO vastaukset (EHDOKAS_ID, KYSYMYS_ID, VASTAUS, KOMMENTTI)
+VALUES ('3', '1', '5', 'ehdokkaan 0 vastaus kysymykseen 1');
+INSERT INTO vastaukset (EHDOKAS_ID, KYSYMYS_ID, VASTAUS, KOMMENTTI)
+VALUES ('3', '2', '5', 'ehdokkaan 0 vastaus kysymykseen 2'); 
+INSERT INTO vastaukset (EHDOKAS_ID, KYSYMYS_ID, VASTAUS, KOMMENTTI)
+VALUES ('3', '3', '5', 'ehdokkaan 0 vastaus kysymykseen 3'); 
+INSERT INTO vastaukset (EHDOKAS_ID, KYSYMYS_ID, VASTAUS, KOMMENTTI)
+VALUES ('3', '4', '5', 'ehdokkaan 0 vastaus kysymykseen 4'); 
+INSERT INTO vastaukset (EHDOKAS_ID, KYSYMYS_ID, VASTAUS, KOMMENTTI)
+VALUES ('3', '5', '5', 'ehdokkaan 0 vastaus kysymykseen 5'); 
+INSERT INTO vastaukset (EHDOKAS_ID, KYSYMYS_ID, VASTAUS, KOMMENTTI)
+VALUES ('3', '6', '5', 'ehdokkaan 0 vastaus kysymykseen 6'); 
+INSERT INTO vastaukset (EHDOKAS_ID, KYSYMYS_ID, VASTAUS, KOMMENTTI)
+VALUES ('3', '7', '5', 'ehdokkaan 0 vastaus kysymykseen 7'); 
+INSERT INTO vastaukset (EHDOKAS_ID, KYSYMYS_ID, VASTAUS, KOMMENTTI)
+VALUES ('3', '8', '5', 'ehdokkaan 0 vastaus kysymykseen 8'); 
+INSERT INTO vastaukset (EHDOKAS_ID, KYSYMYS_ID, VASTAUS, KOMMENTTI)
+VALUES ('3', '9', '5', 'ehdokkaan 0 vastaus kysymykseen 9'); 
+INSERT INTO vastaukset (EHDOKAS_ID, KYSYMYS_ID, VASTAUS, KOMMENTTI)
+VALUES ('3', '10', '5', 'ehdokkaan 0 vastaus kysymykseen 10'); 
+INSERT INTO vastaukset (EHDOKAS_ID, KYSYMYS_ID, VASTAUS, KOMMENTTI)
+VALUES ('3', '11', '5', 'ehdokkaan 0 vastaus kysymykseen 11'); 
+INSERT INTO vastaukset (EHDOKAS_ID, KYSYMYS_ID, VASTAUS, KOMMENTTI)
+VALUES ('3', '12', '5', 'ehdokkaan 0 vastaus kysymykseen 12'); 
+INSERT INTO vastaukset (EHDOKAS_ID, KYSYMYS_ID, VASTAUS, KOMMENTTI)
+VALUES ('3', '13', '5', 'ehdokkaan 0 vastaus kysymykseen 13'); 
+INSERT INTO vastaukset (EHDOKAS_ID, KYSYMYS_ID, VASTAUS, KOMMENTTI)
+VALUES ('3', '14', '5', 'ehdokkaan 0 vastaus kysymykseen 14'); 
+INSERT INTO vastaukset (EHDOKAS_ID, KYSYMYS_ID, VASTAUS, KOMMENTTI)
+VALUES ('3', '15', '5', 'ehdokkaan 0 vastaus kysymykseen 15'); 
+INSERT INTO vastaukset (EHDOKAS_ID, KYSYMYS_ID, VASTAUS, KOMMENTTI)
+VALUES ('3', '16', '5', 'ehdokkaan 0 vastaus kysymykseen 16'); 
+INSERT INTO vastaukset (EHDOKAS_ID, KYSYMYS_ID, VASTAUS, KOMMENTTI)
+VALUES ('3', '17', '5', 'ehdokkaan 0 vastaus kysymykseen 17'); 
+INSERT INTO vastaukset (EHDOKAS_ID, KYSYMYS_ID, VASTAUS, KOMMENTTI)
+VALUES ('3', '18', '5', 'ehdokkaan 0 vastaus kysymykseen 18'); 
+INSERT INTO vastaukset (EHDOKAS_ID, KYSYMYS_ID, VASTAUS, KOMMENTTI)
+VALUES ('3', '19', '5', 'ehdokkaan 0 vastaus kysymykseen 19'); 

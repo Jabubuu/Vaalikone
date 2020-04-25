@@ -59,6 +59,8 @@ session.setAttribute("kaikkiKysymykset", kaikkiKysymykset);
         	              
         </form>
 <br><br>
+
+	
  <%
  
 
@@ -67,17 +69,17 @@ session.setAttribute("kaikkiKysymykset", kaikkiKysymykset);
 		<form><%
 	    for (int i = 0; i < kaikkiKysymykset.size(); i++) {
             if (KayttajanVastaukset.get(i).getVastaus() == null){%>
-            <label>Kysymys <%= i + 1%>:<%= kaikkiKysymykset.get(i).getKysymys()%></label><br>
+            <label>Kysymys <%= i + 1%>: <%= kaikkiKysymykset.get(i).getKysymys()%></label><br>
        		<label>Vastaus: Ei vastausta</label><br>
-       		<lable>Kommentti: Ei Kommenttia</label><br><br><%
+       		<label>Kommentti: Ei Kommenttia</label><br><br><%
             }
             else{
             VastausNum = KayttajanVastaukset.get(i).getVastaus();
             Kommentti = KayttajanVastaukset.get(i).getKommentti();%>
             
-            <label>Kysymys <%= i + 1%>:<%= kaikkiKysymykset.get(i).getKysymys()%></label><br>
+            <label>Kysymys <%= i + 1%>: <%= kaikkiKysymykset.get(i).getKysymys()%></label><br>
        		<label>Vastaus: <%= VastausNum%></label><br>
-       		<lable>Kommentti: <%= Kommentti%></label><br><br><%
+       		<label>Kommentti: <%= Kommentti%></label><br><br><%
             	}
             }
 			%>

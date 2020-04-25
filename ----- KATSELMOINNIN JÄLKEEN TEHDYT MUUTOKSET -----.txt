@@ -1,0 +1,16 @@
+-Kirjautuminen nyt muutettu oikeanlaiseksi, eli kirjaudutaan käyttäjätunnuksella sekä salasanalla mitkä ovat tallennettu tietokantaan. 
+
+-Väärien kirjautumistietojen antamisesta seuraa virheilmoitus
+
+-Väärien tietojen antamisessa kysymysten muokkausten aikana seuraa myös virheilmoitus
+
+-Ehdokas pystyy nyt vastaamaan jokaiseen kysymykseen.
+
+-Kysymyksiin annettuja olemassa olevia vastauksia pystyy nyt muokkaamaan ja poistamaan oikealla tavalla, sekä näistä muutoksista
+tulee vielä ilmoitus käyttäjälle.
+
+
+Kysymysten filtteröintiä ei nyt olla tehty, koska se ei periaatteessa ollu toimeksiannossa ja täten prioriteetti sille ei ollut korkea.
+Tämän olisi toki voinut totetuttaa luomalla jokaiselle kysymykselle jonkin tagin ja yhdistää ne 4-5:ksi omaksi ryhmäkseen, viedä nämä
+tiedot Eclipseen ja lopulta koodata javascriptillä jokin funktio dropdown-valikolle tai radio-buttoneille, jotka filtteröi kysymykset
+valitsemalleen aihealueelle. Tätä toki koitettiin lopussa pikaisesti tehdä siinä kuitenkaan onnistumatta.

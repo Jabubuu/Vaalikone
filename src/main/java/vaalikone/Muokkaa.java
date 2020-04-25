@@ -69,7 +69,6 @@ public class Muokkaa extends HttpServlet {
                 		System.out.println("Tyhja tai vaara ID");
                 		request.getRequestDispatcher("EditError.jsp").forward(request, response);
                 	}
-        	
         	}
         
     @Override
