@@ -19,7 +19,7 @@
 <%  
 
 String title = "";
-String editTeksti = "";
+String editTeksti =(String)request.getAttribute("edit");
 String userID = "";
 String user = "";
 List<Ehdokkaat> kayttaja = null;
@@ -37,7 +37,13 @@ if (session.isNew()){
 userID = (String)session.getAttribute("ID");
 kayttaja = (List<Ehdokkaat>) session.getAttribute("kayttaja");
 
+if (editTeksti != null ) {
+    editTeksti = (String)request.getAttribute("edit");
+} else {
+    editTeksti = "";
+}
   %>  
+
   <p><%= title%></p>
   <p><%= editTeksti%></p>  
 
