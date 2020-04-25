@@ -2,14 +2,10 @@ package vaalikone;
 
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import javax.servlet.http.HttpSession;
-import javax.validation.constraints.Size;
-
 import persist.Ehdokkaat;
 import persist.Kysymykset;
 import persist.Vastaukset;
@@ -105,15 +101,16 @@ public class Ehdokas {
 		this.tunnus = tunnus;
 	}
 
-	public List<Ehdokkaat> haeTiedot() {
-		
-		try {
+	
 
+	public List<Ehdokkaat> haeTiedot() {
+		try {
+			
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("vaalikones");
 			EntityManager em = emf.createEntityManager();
 
-			Query q = em.createQuery("SELECT e FROM Ehdokkaat e WHERE e.ehdokasId=?1");
-			q.setParameter(1, Integer.parseInt(ehdokasId));
+			Query q = em.createQuery("SELECT e FROM Ehdokkaat e WHERE e.tunnus=?1");
+			q.setParameter(1, tunnus);
 			kayttaja = q.getResultList();
 				if (em.getTransaction().isActive()) {
 					em.getTransaction().rollback();
@@ -123,6 +120,7 @@ public class Ehdokas {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 			System.out.println("Ehdokkaan tiedot haettu");
 			return (List<Ehdokkaat>)kayttaja;
 	}
@@ -156,8 +154,8 @@ public class Ehdokas {
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("vaalikones");
 			EntityManager em = emf.createEntityManager();
 
-            Query q = em.createQuery("SELECT v FROM Vastaukset v WHERE v.vastauksetPK.ehdokasId=?1");
-            q.setParameter(1, Integer.parseInt(ehdokasId));
+            Query q = em.createQuery("SELECT v FROM Vastaukset v WHERE v.vastauksetPK.tunnus=?1");
+            q.setParameter(1, Integer.parseInt(tunnus));
             List<Vastaukset> vastaukset = q.getResultList();
 
 				if (em.getTransaction().isActive()) {

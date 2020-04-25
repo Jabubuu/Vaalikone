@@ -26,7 +26,7 @@ public class Muokkaa extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	
-    	int eID = Integer.parseInt(request.getParameter("ehdokasID"));
+    	int eID = Integer.parseInt(request.getParameter("ehdokasId"));
         Ehdokas ehdokas = new Ehdokas();
         ehdokas.setEhdokasId(Integer.toString(eID)); 
     	
