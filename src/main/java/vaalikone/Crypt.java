@@ -3,7 +3,17 @@ package vaalikone;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class CryptMain {
+public class Crypt {
+
+	public static void main(String[] args) {
+		
+		String mypassword = "qwerty12345";
+		String mycryptedpassword = crypt(mypassword);
+		
+		System.out.println("Your crypted password is " + mycryptedpassword);
+		
+
+	}
 
 	public static String crypt(String str) {
         if (str == null || str.length() == 0) {

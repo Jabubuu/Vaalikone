@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
 <head>
-<title>Diginide vaalikone</title>
+<title>Carebears Vaalikone</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="style.css" rel="stylesheet" type="text/css">
@@ -28,10 +28,9 @@ and open the template in the editor.
 			Login</button>
 
 		<div id="login" style="display: none;">
-			<form action="loginprocess" method="get" id="loginForm">
-
-				<label for="username"><b>Käyttäjätunnus</b></label> <br> 
-				<input name="username" size="30" required minlength="1" maxlength="6"> 
+			<form action="Controller" method="post">				
+				<label for="tunnus"><b>Käyttäjätunnus</b></label> <br> 
+				<input name="tunnus" size="30" required minlength="1" maxlength="6"> 
 					<br>
 				<label for="password"><b>Salasana</b></label> <br> 
 				<input type="password" name="password" size="30" required> 

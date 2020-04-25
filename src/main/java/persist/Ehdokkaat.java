@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Ehdokkaat.findBySukunimi", query = "SELECT e FROM Ehdokkaat e WHERE e.sukunimi = :sukunimi"),
     @NamedQuery(name = "Ehdokkaat.findByEtunimi", query = "SELECT e FROM Ehdokkaat e WHERE e.etunimi = :etunimi"),
     @NamedQuery(name = "Ehdokkaat.findBySalasana", query = "SELECT e FROM Ehdokkaat e WHERE e.salasana = :salasana"),
+    @NamedQuery(name = "Ehdokkaat.findByTunnus", query = "SELECT e FROM Ehdokkaat e WHERE e.tunnus = :tunnus"),
     @NamedQuery(name = "Ehdokkaat.findByPuolue", query = "SELECT e FROM Ehdokkaat e WHERE e.puolue = :puolue"),
     @NamedQuery(name = "Ehdokkaat.findByKotipaikkakunta", query = "SELECT e FROM Ehdokkaat e WHERE e.kotipaikkakunta = :kotipaikkakunta"),
     @NamedQuery(name = "Ehdokkaat.findByIk\u00e4", query = "SELECT e FROM Ehdokkaat e WHERE e.ika = :ika"),
@@ -53,11 +54,11 @@ public class Ehdokkaat implements Serializable {
     @Column(name = "ETUNIMI")
     private String etunimi;
     @Size(max = 25)
-    @Column(name = "KAYTTAJATUNNUS")
-    private String kayttajatunnus;
-    @Size(max = 50)
     @Column(name = "SALASANA")
     private String salasana;
+    @Size(max = 25)
+    @Column(name = "KAYTTAJATUNNUS")
+    private String tunnus;
     @Size(max = 50)
     @Column(name = "PUOLUE")
     private String puolue;
@@ -137,18 +138,6 @@ public class Ehdokkaat implements Serializable {
      */
     public void setEtunimi(String etunimi) {
         this.etunimi = etunimi;
-    }
-    
-    public String getKayttajatunnus() {
-        return kayttajatunnus;
-    }
-
-    /**
-     *
-     * @param etunimi
-     */
-    public void setKayttajatunnus(String kayttajatunnus) {
-        this.kayttajatunnus = kayttajatunnus;
     }
 
     public String getSalasana() {

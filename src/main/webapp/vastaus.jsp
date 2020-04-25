@@ -18,7 +18,7 @@
 <body>
 
 <div id="container">
-<img id="headerimg" src="images/Logo.png" width="500" height="144" alt=""/>
+<img id="headerimg" src="Logo.png" width="500" height="144" alt=""/>
 
 
 
@@ -26,6 +26,10 @@
             @SuppressWarnings("unchecked") 
             List<Kysymykset> kysymykset = (List<Kysymykset>)request.getAttribute("kysymykset");
             for (Kysymykset kysymys : kysymykset) { %>
+            <form action="home.jsp" method="post" id="loginForm">
+					<button type="submit">Takaisin</button>
+				</form>		
+            
             <div class="kysymys">
                 <%= kysymys.getKysymysId() %> / 19 <br>
                 <%= kysymys.getKysymys() %>
@@ -36,6 +40,14 @@
                     <label>3</label><input type="radio" name="vastaus" value="3" checked="checked" />
                     <label>4</label><input type="radio" name="vastaus" value="4" />
                     <label>5</label><input type="radio" name="vastaus" value="5" />
+                    <%
+                    	if (session.getAttribute("ID") != null){
+                    		%>
+                    		<label for="fname">Kommentti:</label><br>
+  							<input type="text" name="kommentti"><br>
+                    		<%
+                    	}
+                    %>
                     <input type="hidden" name="q" value="<%= kysymys.getKysymysId() %>">
                     <input type="submit" id="submitnappi" value="Vastaa" />
                 </form>

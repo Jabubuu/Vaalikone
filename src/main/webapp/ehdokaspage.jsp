@@ -31,6 +31,7 @@
 	
 	<h1> Tervetuloa <%= session.getAttribute("loginname")%></h1>
 	<h1> ID:  <%= session.getAttribute("userid")%></h1>
+	<h1> Func:  <%= session.getAttribute("func")%></h1>
 
               	<%  for (Ehdokkaat haettuEhdokas : ehdokas) { %>
             

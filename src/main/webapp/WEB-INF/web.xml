@@ -12,32 +12,52 @@
     <servlet-name>Vaalikone</servlet-name>
     <servlet-class>vaalikone.Vaalikone</servlet-class>
   </servlet>
-
-   <servlet>
-    <servlet-name>loginprocess</servlet-name>
-    <servlet-class>vaalikone.loginprocess</servlet-class>
-  </servlet>
   
-   <servlet>
+    <servlet>
     <servlet-name>PoistaMuokkaa</servlet-name>
     <servlet-class>vaalikone.PoistaMuokkaa</servlet-class>
+  </servlet>
+  
+      <servlet>
+    <servlet-name>Poista</servlet-name>
+    <servlet-class>vaalikone.Poista</servlet-class>
+  </servlet>
+  
+        <servlet>
+    <servlet-name>Muokkaa</servlet-name>
+    <servlet-class>vaalikone.Muokkaa</servlet-class>
+  </servlet>
+  
+        <servlet>
+    <servlet-name>Controller</servlet-name>
+    <servlet-class>vaalikone.Controller</servlet-class>
   </servlet>
   
   <servlet-mapping>
     <servlet-name>Vaalikone</servlet-name>
     <url-pattern>/Vaalikone</url-pattern>
   </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>loginprocess</servlet-name>
-    <url-pattern>/loginprocess</url-pattern>
-  </servlet-mapping>
   
-  <servlet-mapping>
+    <servlet-mapping>
     <servlet-name>PoistaMuokkaa</servlet-name>
     <url-pattern>/PoistaMuokkaa</url-pattern>
   </servlet-mapping>
   
+      <servlet-mapping>
+    <servlet-name>Muokkaa</servlet-name>
+    <url-pattern>/Muokkaa</url-pattern>
+  </servlet-mapping>
+  
+      <servlet-mapping>
+    <servlet-name>Poista</servlet-name>
+    <url-pattern>/Poista</url-pattern>
+  </servlet-mapping>
+
+  
+        <servlet-mapping>
+    <servlet-name>Controller</servlet-name>
+    <url-pattern>/Controller</url-pattern>
+  </servlet-mapping>
   
   <session-config>
     <session-timeout>30</session-timeout>

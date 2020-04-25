@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
 <head>
-<title>Login Error</title>
+<title>Edit Error</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="style.css" rel="stylesheet" type="text/css">
@@ -16,11 +16,11 @@ and open the template in the editor.
 	<div id="container">
 		<img id="headerimg" src="Logo.png" width="720" />
 		<div class="message">
-			<h1>Virhe kirjautumisessa, tarkista Id tai salasana</h1>
+			<h1>Virhe muokatessa tietoa, tarkista Id</h1>
 		</div>
 		<br>
 	<br>
-				<form action="index.html" method="post" id="return">
+				<form action="home.jsp" method="post" id="return">
 				<button type="submit">Takaisin</button>
 			</form>
 		</div>
