@@ -125,7 +125,7 @@ public class Vaalikone extends HttpServlet {
                           catch(Exception e) {
                         	  e.printStackTrace();
                           }
-                		System.out.println("Kysymys id: " + kysymys_id + " muokattu");
+                		System.out.println("Kysymys id: " + kysymys_id + " vastattu");
                 	}
                 	else { 
                 		usr.addVastaus(kysymys_id, parseInt(strVastaus));
