@@ -16,6 +16,11 @@ import java.io.Serializable;
 public class Tuple<E,F> implements Serializable{
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      *
      */
     public E ehdokasId;

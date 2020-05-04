@@ -1,4 +1,4 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -8,25 +8,19 @@ package vaalikone;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.google.appengine.api.utils.SystemProperty;
 
 import persist.Ehdokkaat;
 import persist.Kysymykset;
@@ -40,7 +34,11 @@ import persist.Vastaukset;
 public class Vaalikone extends HttpServlet {
 
 	
-    //hae java logger-instanssi
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	//hae java logger-instanssi
     private final static Logger logger = Logger.getLogger(Loki.class.getName());
 
     /**
@@ -66,7 +64,7 @@ public class Vaalikone extends HttpServlet {
         //jos käyttäjä-oliota ei löydy sessiosta, luodaan sinne sellainen
         if (usr == null) {
             usr = new Kayttaja();
-            logger.log(Level.FINE, "Luotu uusi k�ytt�j�olio");
+            logger.log(Level.FINE, "Luotu uusi k�ytt�j�olio");
             session.setAttribute("usrobj", usr);
         }
         EntityManagerFactory emf=null;
@@ -95,7 +93,10 @@ public class Vaalikone extends HttpServlet {
 
             //hae parametrina tuotu edellisen kysymyksen vastaus
             String strVastaus = request.getParameter("vastaus");
-
+            String strKommentti = null;
+            if (session.getAttribute("ID") != null) {
+            	strKommentti = request.getParameter("kommentti");
+            }
             // Jos kysymyksen numero (kysId) on asetettu, haetaan tuo kysymys
             // muuten haetaan kysnro 1
             if (strKysymys_id == null) {
@@ -104,12 +105,36 @@ public class Vaalikone extends HttpServlet {
                 kysymys_id = parseInt(strKysymys_id);
                 //jos vastaus on asetettu, tallenna se session käyttäjä-olioon
                 if (strVastaus != null) {
-                    usr.addVastaus(kysymys_id, parseInt(strVastaus));
-                }
+                	if(session.getAttribute("ID") != null) {
+                		try {
+                            em.getTransaction().begin();
+                    		int IntVastaus = Integer.parseInt(strVastaus);
+                    		int eID = Integer.parseInt((String) session.getAttribute("ID"));
+                    		Query q = em.createQuery("SELECT v FROM Vastaukset v WHERE v.vastauksetPK.ehdokasId=?1 AND v.vastauksetPK.kysymysId=?2");
+                    		q.setParameter(1, eID);//ehdokas param
+                    		q.setParameter(2, kysymys_id);//Kysymyksen param
+                    		List<Vastaukset> Poistettu = q.getResultList();
+                    		Poistettu.get(0).setVastaus(IntVastaus);
+                    		Poistettu.get(0).setKommentti(strKommentti);
+                    		em.getTransaction().commit();
 
+            				if (em.getTransaction().isActive()) {
+            					em.getTransaction().rollback();
+            				}
+                          }
+                          catch(Exception e) {
+                        	  e.printStackTrace();
+                          }
+                		System.out.println("Kysymys id: " + kysymys_id + " muokattu");
+                	}
+                	else { 
+                		usr.addVastaus(kysymys_id, parseInt(strVastaus));
+                	
+                	}
+                }
                 //määritä seuraavaksi haettava kysymys
                 kysymys_id++;
-            }
+            }                        
 
             //jos kysymyksiä on vielä jäljellä, hae seuraava
             if (kysymys_id < 20) {
@@ -133,48 +158,47 @@ public class Vaalikone extends HttpServlet {
                 }
 
                 //jos kysymykset loppuvat, lasketaan tulos!
-            } else {
+            } 
+            else {
+            	
+                if(session.getAttribute("ID") != null) {
+                	strFunc = "palaa";
+            	}
+                else {            		
+                	//Tyhjennetään piste-array jotta pisteet eivät tuplaannu mahdollisen refreshin tapahtuessa
+                	for (int i = 0; i < 20; i++) {
+                		usr.pisteet.set(i, new Tuple<>(0, 0));
+                	}
 
-                //Tyhjennetään piste-array jotta pisteet eivät tuplaannu mahdollisen refreshin tapahtuessa
-                for (int i = 0; i < 20; i++) {
-                    usr.pisteet.set(i, new Tuple<>(0, 0));
-                }
-
-                //Hae lista ehdokkaista
-                Query qE = em.createQuery(
-                        "SELECT e.ehdokasId FROM Ehdokkaat e"
-                );
-                List<Integer> ehdokasList = qE.getResultList();
+                	//Hae lista ehdokkaista
+                	Query qE = em.createQuery("SELECT e.ehdokasId FROM Ehdokkaat e");
+                	List<Integer> ehdokasList = qE.getResultList();
 
                 //iteroi ehdokaslista läpi
-                for (int i = 1; i < ehdokasList.size(); i++) {
+                	for (int i = 1; i < ehdokasList.size(); i++) {
 
-                    //Hae lista ehdokkaiden vastauksista
-                    Query qV = em.createQuery(
-                            "SELECT v FROM Vastaukset v WHERE v.vastauksetPK.ehdokasId=?1");
-                    qV.setParameter(1, i);
-                    List<Vastaukset> vastausList = qV.getResultList();
-
-                    //iteroi vastauslista läpi
-                    for (Vastaukset eVastaus : vastausList) {
-                        int pisteet;
-
-                        //hae käyttäjän ehdokaskohtaiset pisteet
-                        pisteet = usr.getPisteet(i);
-
-                        //laske oman ja ehdokkaan vastauksen perusteella pisteet 
-                        pisteet += laskePisteet(usr.getVastaus(i), eVastaus.getVastaus());
-
-                        logger.log(Level.INFO, "eID: {0} / k: {1} / kV: {2} / eV: {3} / p: {4}", new Object[]{i, eVastaus.getVastauksetPK().getKysymysId(), usr.getVastaus(i), eVastaus.getVastaus(), pisteet});
-                        usr.addPisteet(i, pisteet);
-                    }
-
-                }
-
-                //siirrytään hakemaan paras ehdokas
+	                    //Hae lista ehdokkaiden vastauksista
+	                    Query qV = em.createQuery(
+	                            "SELECT v FROM Vastaukset v WHERE v.vastauksetPK.ehdokasId=?1");
+	                    qV.setParameter(1, i);
+	                    List<Vastaukset> vastausList = qV.getResultList();
+	
+	                    //iteroi vastauslista läpi
+	                    for (Vastaukset eVastaus : vastausList) {
+	                        int pisteet;
+	
+	                        //hae käyttäjän ehdokaskohtaiset pisteet
+	                        pisteet = usr.getPisteet(i);
+	
+	                        //laske oman ja ehdokkaan vastauksen perusteella pisteet 
+	                        pisteet += laskePisteet(usr.getVastaus(i), eVastaus.getVastaus());
+	
+	                        logger.log(Level.INFO, "eID: {0} / k: {1} / kV: {2} / eV: {3} / p: {4}", new Object[]{i, eVastaus.getVastauksetPK().getKysymysId(), usr.getVastaus(i), eVastaus.getVastaus(), pisteet});
+	                        usr.addPisteet(i, pisteet);
+	                    	}            
+                	}
                 strFunc = "haeEhdokas";
-            }
-
+                }
         }
 
         //jos func-arvo on haeEhdokas, haetaan haluttu henkilö käyttäjälle sopivimmista ehdokkaista
@@ -223,6 +247,11 @@ public class Vaalikone extends HttpServlet {
             em.close();
 
         }
+	        if("palaa".equals(strFunc)) {
+	        	request.getRequestDispatcher("/home.jsp").forward(request, response);
+	        }
+        }
+        
 
     }
 

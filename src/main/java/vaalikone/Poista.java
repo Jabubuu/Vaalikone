@@ -1,33 +1,18 @@
 package vaalikone;
 
 import java.io.IOException;
-import static java.lang.Integer.parseInt;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import com.google.appengine.api.utils.SystemProperty;
-
-import persist.Ehdokkaat;
-import persist.Kysymykset;
 import persist.Vastaukset;
 
-public class PoistaMuokkaa extends HttpServlet {
+public class Poista extends HttpServlet {
 	
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,37 +29,46 @@ public class PoistaMuokkaa extends HttpServlet {
     	int eID = Integer.parseInt(request.getParameter("ehdokasID"));
         Ehdokas ehdokas = new Ehdokas();
         ehdokas.setEhdokasId(Integer.toString(eID)); 
-    	
-        EntityManagerFactory emf=null;
-        EntityManager em = null;
-        try {
-  	      emf=Persistence.createEntityManagerFactory("vaalikones");
-  	      em = emf.createEntityManager();
-        }
-        catch(Exception e) {
-          	response.getWriter().println("EMF+EM EI Onnistu");
-          	
-          	e.printStackTrace(response.getWriter());
-          	
-          	return;
+        String editTeksti = "";
+        
+        String PoistaID = request.getParameter("id");// Kysymyksen ID
+
+        	if ((PoistaID != null) && (Integer.parseInt(PoistaID)) < 20){
+        		
+                try {
+                    EntityManagerFactory  emf=Persistence.createEntityManagerFactory("vaalikones");
+                    EntityManager em = emf.createEntityManager();
+                    em.getTransaction().begin();
+            		int id = Integer.parseInt(PoistaID);
+            		Query q = em.createQuery("SELECT v FROM Vastaukset v WHERE v.vastauksetPK.ehdokasId=?1 AND v.vastauksetPK.kysymysId=?2");
+            		q.setParameter(1, eID);//ehdokas param
+            		q.setParameter(2, id);//Kysymyksen param
+            		List<Vastaukset> Poistettu = q.getResultList();
+            		Poistettu.get(0).setVastaus(null);
+            		Poistettu.get(0).setKommentti("Ei kommenttia");
+            		em.getTransaction().commit();
+                    
+            		
+    				if (em.getTransaction().isActive()) {
+    					em.getTransaction().rollback();
+    				}
+    				em.close();
+                  }
+                  catch(Exception e) {
+                	  e.printStackTrace();
+                  }
+                editTeksti = "Vastaus nro: " + PoistaID + " tiedot poistettu";
+                request.setAttribute("edit", editTeksti);
+               // System.out.println("Kysymys id: " + PoistaID + " poistettu");
+            		request.getRequestDispatcher("home.jsp").forward(request, response);
+
+        	}	else {
+        		System.out.println("Tyhja tai vaara ID");
+        		request.getRequestDispatcher("EditError.jsp").forward(request, response);
+        	}
+
         }
 
-        	Query q = em.createQuery(
-                    "SELECT k FROM Kysymykset k");
-            List<Kysymykset> kaikkiKysymykset = q.getResultList();
-            
-            q = em.createQuery(
-            		"SELECT v FROM Vastaukset v WHERE v.vastauksetPK.ehdokasId=?1");
-            q.setParameter(1, eID); //tämä on täällä jotta voidaan muuttujalla sitten hakea oikea ehdokas
-            List<Vastaukset> KayttajanVastaukset = q.getResultList();
-            
-            request.setAttribute("kaikkiKysymykset", kaikkiKysymykset);
-            request.setAttribute("KayttajanVastaukset", KayttajanVastaukset);
-        	
-        	request.getRequestDispatcher("Edit.jsp")
-            .forward(request, response);
-        }
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
