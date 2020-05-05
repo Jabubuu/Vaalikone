@@ -9,9 +9,9 @@
     <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
     <property name="drivername" value="com.mysql.jdbc.Driver"/>
     <property name="username" value="root"/>
-    <property name="password" value="1824"/>
+    <property name="password" value="MySQL"/>
     <property name="localusername" value="root"/>
-    <property name="localpassword" value="1824"/>
+    <property name="localpassword" value="MySQL"/>
     <property name="databasename" value="vaalikone"/>
     
   </system-properties>

@@ -35,21 +35,64 @@ ehdokas.puolue=document.getElementById("puolue").value;
 }
 
 function getData(){
+	
 	var xhttp = new XMLHttpRequest();
 	
 	xhttp.onreadystatechange = function() {
 	  if (this.readyState == 4 && this.status == 200) {
-	   var json=JSON.parse(xhttp.responseText);
+	   var json= JSON.parse(this.responseText);
 	   var txt="";
 	   var x;
+	   var num = 0;
 	   for (x in json) {
-		   txt += json[x].etunimi + " " + json[x].sukunimi + "<br />";
+		   txt += json[x].etunimi + " " + json[x].sukunimi + "<input type='button' name='ok' value='Lisää' onclick='moreData(" + num + ");'>" +"<br />" + "<p id='moreEhd"+ num +"'></p>"+"<br />";		   		   
+		   num++;		   
 	   }
 
 	   document.getElementById("ehdokkaat").innerHTML = txt;
 	  }
 	};
 	xhttp.open("GET","./rest/ehdokasservice/all",true);
+	xhttp.setRequestHeader("Content-type","application/json");
+	xhttp.send();
+	}
+
+function moreData(num){
+	
+	var xhttp = new XMLHttpRequest();
+	
+	xhttp.onreadystatechange = function() {
+	  if (this.readyState == 4 && this.status == 200) {
+	   var json= JSON.parse(this.responseText);
+	   var txt=json[num].etunimi + json[num].sukunimi + "<br />" 
+			   + json[num].ika + "<br />" 
+			   + json[num].puolue + "<br />" 
+			   + json[num].kotipaikkakunta + "<br />"
+			   + json[num].miksiEduskuntaan + "<br />"
+			   + json[num].mitaAsioitaHaluatEdistaa + "<br />"
+			   + json[num].ammatti + "<br />"
+			   + "<input type='button' name='ok' value='Vähemmän' onclick='lessData(" + num + ");'>" +"<br />";
+	   document.getElementById("moreEhd" + num).innerHTML = txt;
+	  }
+	};
+	xhttp.open("GET","./rest/ehdokasservice/all",true);
+	xhttp.setRequestHeader("Content-type","application/json");
+	xhttp.send();
+	}
+	
+function lessData(num){
+	
+	var xhttp = new XMLHttpRequest();
+	
+	xhttp.onreadystatechange = function() {
+	  if (this.readyState == 4 && this.status == 200) {
+	   var json= JSON.parse(this.responseText);
+	   var txt=""; 
+	   document.getElementById("moreEhd" + num).innerHTML = txt;
+	  }
+	};
+	xhttp.open("GET","./rest/ehdokasservice/all",true);
+	xhttp.setRequestHeader("Content-type","application/json");
 	xhttp.send();
 	}
 
