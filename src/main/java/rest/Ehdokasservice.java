@@ -39,8 +39,9 @@ public class Ehdokasservice {
     public List<Ehdokkaat> getEhdokkaat(){
         return EhdokasDao.getEhdokkaat();
     }
+    
 
-    @DELETE
+    @POST
     @Path("/delete/{id}")
     public boolean deleteEhdokas(@PathParam("id") int id) {
         return EhdokasDao.deleteEhdokas(id);
