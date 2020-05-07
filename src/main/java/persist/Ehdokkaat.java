@@ -173,7 +173,15 @@ public class Ehdokkaat implements Serializable {
         this.salasana = salasana;
     }
     
-    /**
+    public String getTunnus() {
+		return tunnus;
+	}
+
+	public void setTunnus(String tunnus) {
+		this.tunnus = tunnus;
+	}
+
+	/**
      *
      * @return
      */
@@ -215,7 +223,6 @@ public class Ehdokkaat implements Serializable {
 
     /**
      *
-     * @param ikä
      */
     public void setIka(Integer ika) {
         this.ika = ika;

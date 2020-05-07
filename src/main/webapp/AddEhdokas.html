@@ -11,13 +11,14 @@ function sendData(){
 	ehdokas.etunimi=document.getElementById("etu").value;
 	ehdokas.sukunimi=document.getElementById("suku").value;
  	ehdokas.salasana=document.getElementById("sala").value;
- 	/* 	ehdokas.tunnus=document.getElementById("tunnus").value;
-ehdokas.puolue=document.getElementById("puolue").value;
-	ehdokas.kotipaikkakunta=document.getElementById("koti").value;
 	ehdokas.ika=document.getElementById("ika").value;
+	ehdokas.puolue=document.getElementById("puolue").value;
+	ehdokas.kotipaikkakunta=document.getElementById("koti").value;
 	ehdokas.ammatti=document.getElementById("ammatti").value;
 	ehdokas.miksiEduskuntaan=document.getElementById("miksi").value;
-	ehdokas.mitaAsioitaHaluatEdistaa=document.getElementById("mita").value; */
+	ehdokas.mitaAsioitaHaluatEdistaa=document.getElementById("mita").value; 
+	ehdokas.tunnus=document.getElementById("tunnus").value;
+
 	
 	var jsonEhdokas=JSON.stringify(ehdokas);
 	var xhttp = new XMLHttpRequest();
@@ -56,7 +57,7 @@ function getData(){
 	xhttp.setRequestHeader("Content-type","application/json");
 	xhttp.send();
 	}
-
+	
 function moreData(num){
 	
 	var xhttp = new XMLHttpRequest();
@@ -110,13 +111,15 @@ function lessData(num){
 <input id='etu' type='text' name='etu' value='' placeholder='Etunimi'><br>
 <input id='suku' type='text' name='suku' value='' placeholder='Sukunimi'><br>
 <input id='sala' type='text' name='sala' value='' placeholder='Salasana'><br>
-<!-- <input id='tunnus' type='text' name='tunnus' value='' placeholder='Tunnus'><br>
+<input id='tunnus' type='text' name='tunnus' value='' placeholder='Käyttäjätunnus'><br>
+<input id='ika' type='text' name='ika' value='' placeholder='Ikä'><br>
 <input id='puolue' type='text' name='puolue' value='' placeholder='Puolue'><br>
 <input id='koti' type='text' name='koti' value='' placeholder='Kotipaikkakunta'><br>
-<input id='ika' type='text' name='ika' value='' placeholder='Ikä'><br>
 <input id='ammatti' type='text' name='ammatti' value='' placeholder='Ammatti'><br>
 <input id='miksi' type='text' name='miksi' value='' placeholder='Miksi eduskuntaan'><br>
-<input id='mita' type='text' name='mita' value='' placeholder='Mitä haluaisit muuttaa'><br>-->
+<input id='mita' type='text' name='mita' value='' placeholder='Mitä haluaisit muuttaa'><br>
+
+
 <input type='button' name='ok' value='Lisää' onclick='sendData();'><br> 
 </form>
 
