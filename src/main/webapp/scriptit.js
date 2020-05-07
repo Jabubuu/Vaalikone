@@ -74,7 +74,8 @@ function moreData(num){
 	  if (this.readyState == 4 && this.status == 200) {
 	   var json= JSON.parse(this.responseText);
 	   var txt=json[num].etunimi + json[num].sukunimi + "<br />" 
-			   + json[num].ika + "<br />" 
+			   + json[num].ika + "<br />"
+			   + json[num].ehdokasId + "<br />"
 			   + json[num].puolue + "<br />" 
 			   + json[num].kotipaikkakunta + "<br />"
 			   + json[num].miksiEduskuntaan + "<br />"
