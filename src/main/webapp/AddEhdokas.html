@@ -66,7 +66,8 @@ function moreData(num){
 	  if (this.readyState == 4 && this.status == 200) {
 	   var json= JSON.parse(this.responseText);
 	   var txt=json[num].etunimi + json[num].sukunimi + "<br />" 
-			   + json[num].ika + "<br />" 
+			   + json[num].ika + "<br />"
+			   + json[num].ehdokasId + "<br />"
 			   + json[num].puolue + "<br />" 
 			   + json[num].kotipaikkakunta + "<br />"
 			   + json[num].miksiEduskuntaan + "<br />"
@@ -96,6 +97,20 @@ function lessData(num){
 	xhttp.setRequestHeader("Content-type","application/json");
 	xhttp.send();
 	}
+	
+function deleteData(){
+	
+	var xhttp = new XMLHttpRequest();
+	
+	var eID = document.getElementById("eID").value;
+	xhttp.onreadystatechange = function() {
+	  if (this.readyState == 4 && this.status == 200) {
+		  
+	  }
+	};
+	xhttp.open("POST","./rest/ehdokasservice/delete/"+eID,true);
+	xhttp.send();
+	}
 
 
 </script>
@@ -121,6 +136,11 @@ function lessData(num){
 
 
 <input type='button' name='ok' value='Lisää' onclick='sendData();'><br> 
+</form>
+
+<form action="#" method='post' onsubmit='return false;'>
+<input id='eID' type='text' name='eID' value='' placeholder='Poistettavan ehdokkaan id'><br>
+<input type='button' name='ok' value='Poista' onclick='deleteData();'><br> 
 </form>
 
 <p id='inparts'></p>
