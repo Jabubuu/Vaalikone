@@ -29,6 +29,10 @@
 <input id='nappula' type='button' disabled="disabled" name='ok' value='Lisää' onclick='sendData();'><br> 
 </form>
 
+<form action="#" method='post' onsubmit='return false;'>
+<input id='eID' type='text' name='eID' value='' placeholder='Poistettavan ehdokkaan id'><br>
+<input type='button' name='ok' value='Poista' onclick='deleteData();'><br>  </form>
+
 <p id='inparts'></p>
 
 <button type="button" onclick="getData();">Näytä kaikki ehdokkaat</button>

@@ -29,6 +29,20 @@ function sendData(){
 	xhttp.send(jsonEhdokas);
 }
 
+function deleteData(){
+
+    var xhttp = new XMLHttpRequest();
+
+    var eID = document.getElementById("eID").value;
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+
+      }
+    };
+    xhttp.open("POST","./rest/ehdokasservice/delete/"+eID,true);
+    xhttp.send();
+    }
+
 function getData(){
 	
 	var xhttp = new XMLHttpRequest();
@@ -105,5 +119,6 @@ function checkform()
     
 }
 	window.onload = checkform;
+	
 
 
