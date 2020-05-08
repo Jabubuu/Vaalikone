@@ -36,7 +36,7 @@ function deleteData(){
     var eID = document.getElementById("eID").value;
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-
+    	  alert("Poistit ehdokkaan " + eID);
       }
     };
     xhttp.open("POST","./rest/ehdokasservice/delete/"+eID,true);
