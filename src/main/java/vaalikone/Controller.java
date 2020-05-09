@@ -48,9 +48,9 @@ public class Controller extends HttpServlet {
         	 
 
         	request.setAttribute("kayttaja", ehdokas.haeTiedot());
+
         	request.setAttribute("ehdokas", ehdokas);
-        	request.setAttribute("ehdokasId", haettuID);
-        	request.setAttribute("tunnus", tunnus);
+        	request.setAttribute("ehdokasID", haettuID);
             RequestDispatcher rd=request.getRequestDispatcher("home.jsp");  
             rd.forward(request, response);  
         }  

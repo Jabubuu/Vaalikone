@@ -11,6 +11,8 @@ import java.util.logging.Logger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -46,6 +48,7 @@ public class Ehdokkaat implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "EHDOKAS_ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ehdokasId;
     @Size(max = 25)
     @Column(name = "SUKUNIMI")
@@ -83,6 +86,24 @@ public class Ehdokkaat implements Serializable {
     public Ehdokkaat() {
     	super();
     }
+    
+    public Ehdokkaat(String etunimi, String sukunimi, String salasana, String tunnus, String puolue, 
+    		String kotipaikkakunta, String ika, String miksi_eduskuntaan, String mita_asioita_haluat_edistaa, String ammatti) {
+        this.etunimi=etunimi;
+        this.sukunimi=sukunimi;
+        this.ammatti=ammatti;
+        this.setIka(ika);
+        this.kotipaikkakunta=kotipaikkakunta;
+        this.puolue=puolue;
+        this.salasana=salasana;
+        this.tunnus=tunnus;
+        this.miksiEduskuntaan=miksi_eduskuntaan;
+        this.mitaAsioitaHaluatEdistaa=mita_asioita_haluat_edistaa;
+        
+    }
+    
+    
+    
 
     /**
      *
@@ -152,7 +173,15 @@ public class Ehdokkaat implements Serializable {
         this.salasana = salasana;
     }
     
-    /**
+    public String getTunnus() {
+		return tunnus;
+	}
+
+	public void setTunnus(String tunnus) {
+		this.tunnus = tunnus;
+	}
+
+	/**
      *
      * @return
      */
@@ -194,12 +223,20 @@ public class Ehdokkaat implements Serializable {
 
     /**
      *
-     * @param ikä
      */
     public void setIka(Integer ika) {
         this.ika = ika;
     }
 
+	public void setIka(String ika) {
+		try {
+		this.ika = Integer.parseInt(ika);
+	}        catch(NumberFormatException e) {
+        this.ika=0;
+    }
+	}
+    
+    
     /**
      *
      * @return

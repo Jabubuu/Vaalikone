@@ -23,8 +23,7 @@
 
 <%  
 
-String tunnus = (String)session.getAttribute("tunnus");
-String id = (String)session.getAttribute("ehdokasId");
+String userID = (String)session.getAttribute("ID");
 List<Ehdokkaat> kayttaja = (List<Ehdokkaat>) session.getAttribute("kayttaja");
 
 List<Vastaukset> KayttajanVastaukset = (List<Vastaukset>) request.getAttribute("KayttajanVastaukset");
@@ -39,7 +38,7 @@ session.setAttribute("kaikkiKysymykset", kaikkiKysymykset);
 
 				<label for="fname">Poistettavan vastauksen Id:</label> <br>
 				<input name="id" size="30" required minlength="1" maxlength="2"> 
-        	<input type="hidden" name="ehdokasId" value= <%= id%>><br>
+        	<input type="hidden" name="ehdokasID" value= <%= userID%>><br>
         	<button type="submit">Poista</button> 
 					<br>
 				
@@ -50,7 +49,7 @@ session.setAttribute("kaikkiKysymykset", kaikkiKysymykset);
 			
         	<label for="fname">Muokattavan vastauksen Id:</label>
         	<input type="hidden" name="func" value="Ehdokas"><br>
-        	<input type="hidden" name="ehdokasId" value=<%= id%>><br>
+        	<input type="hidden" name="ehdokasID" value=<%= userID%>><br>
   			<input type="text" name="Muokkaa"><br>
   			<label for="fname">Uusi vastaus numero 1-5:</label><br>
   			<input type="text" name="UusiVastaus"><br>

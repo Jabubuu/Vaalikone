@@ -19,35 +19,38 @@
 <%  
 
 String title = "";
-String editTeksti = "";
-String tunnus = "";
+String editTeksti =(String)request.getAttribute("edit");
+String userID = "";
 String user = "";
-String id = "";
 List<Ehdokkaat> kayttaja = null;
 
 // Check if this is new comer on your Webpage.
 if (session.isNew()){
-	tunnus = (String)request.getAttribute("tunnus");
-   title = "Terve, ehdokas";
-   id = (String)request.getAttribute("ehdokasId");
-   session.setAttribute("ehdokasId",id);
-   session.setAttribute("tunnus",tunnus);
+	userID = (String)request.getAttribute("ehdokasID");
+   title = "Terve, ehdokas numero: " + userID;
+   
+   session.setAttribute("ID",userID);
 	kayttaja = (List<Ehdokkaat>) request.getAttribute("kayttaja");
 	session.setAttribute("kayttaja", kayttaja);
 }
-id = (String)session.getAttribute("ehdokasId");
-tunnus = (String)session.getAttribute("tunnus");
+
+userID = (String)session.getAttribute("ID");
 kayttaja = (List<Ehdokkaat>) session.getAttribute("kayttaja");
 
+if (editTeksti != null ) {
+    editTeksti = (String)request.getAttribute("edit");
+} else {
+    editTeksti = "";
+}
   %>  
+
   <p><%= title%></p>
   <p><%= editTeksti%></p>  
 
 
 		<br>
 		<form action="PoistaMuokkaa" method="post">
-		<input type="hidden" name="ehdokasId" value=<%=id%>><br>
-		<input type="hidden" name="tunnus" value=<%=tunnus%>><br>
+		<input type="hidden" name="ehdokasID" value=<%=userID%>><br>
 			<button type="submit">Muokkaa vastauksia</button>
 		</form>
 
@@ -62,6 +65,7 @@ kayttaja = (List<Ehdokkaat>) session.getAttribute("kayttaja");
 	%>
 	
 			<%  for (Ehdokkaat haettuEhdokas : kayttaja) { %>
+            
 			<h2>Tiedot:</h2>
             <h3>Ehdokas numero: <%= haettuEhdokas.getEhdokasId()%></h3>
             <ul>

@@ -18,7 +18,7 @@
     </head>
     <body>
         <div id="container">
-            <h1>Diginide kertoo sinulle, ketä pitää äänestää:</h1>
+            <h1>Care Bears™ kertoo sinulle, ketä pitää äänestää:</h1>
             <%
                 List<Ehdokkaat> parhaatEhdokkaat = (List<Ehdokkaat>) request.getAttribute("parasEhdokas");
                 List<Integer> kayttajanVastaukset = (List<Integer>) request.getAttribute("kayttajanVastaukset");

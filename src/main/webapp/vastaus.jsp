@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Carebears Vaalikone 2020</title>
+<title>Diginide Vaalikone 2.0</title>
 
 <link href="style.css" rel="stylesheet" type="text/css">
 </head>
@@ -26,6 +26,10 @@
             @SuppressWarnings("unchecked") 
             List<Kysymykset> kysymykset = (List<Kysymykset>)request.getAttribute("kysymykset");
             for (Kysymykset kysymys : kysymykset) { %>
+            <form action="home.jsp" method="post" id="loginForm">
+					<button type="submit">Takaisin</button>
+				</form>		
+            
             <div class="kysymys">
                 <%= kysymys.getKysymysId() %> / 19 <br>
                 <%= kysymys.getKysymys() %>

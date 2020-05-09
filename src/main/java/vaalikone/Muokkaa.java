@@ -26,7 +26,7 @@ public class Muokkaa extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	
-    	int eID = Integer.parseInt(request.getParameter("ehdokasId"));
+    	int eID = Integer.parseInt(request.getParameter("ehdokasID"));
         Ehdokas ehdokas = new Ehdokas();
         ehdokas.setEhdokasId(Integer.toString(eID)); 
     	
@@ -69,6 +69,7 @@ public class Muokkaa extends HttpServlet {
                 		System.out.println("Tyhja tai vaara ID");
                 		request.getRequestDispatcher("EditError.jsp").forward(request, response);
                 	}
+        	
         	}
         
     @Override
