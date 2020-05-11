@@ -33,6 +33,19 @@
     <servlet-class>vaalikone.Controller</servlet-class>
   </servlet>
   
+<<<<<<< Updated upstream
+=======
+            <servlet>
+    <servlet-name>Adminloggaus</servlet-name>
+    <servlet-class>vaalikone.Adminloggaus</servlet-class>
+  </servlet>
+  
+  	<servlet-mapping>
+		<servlet-name>jersey-servlet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+  
+>>>>>>> Stashed changes
   <servlet-mapping>
     <servlet-name>Vaalikone</servlet-name>
     <url-pattern>/Vaalikone</url-pattern>
@@ -57,6 +70,13 @@
         <servlet-mapping>
     <servlet-name>Controller</servlet-name>
     <url-pattern>/Controller</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+     <servlet-mapping>
+    <servlet-name>Adminloggaus</servlet-name>
+    <url-pattern>/Adminloggaus</url-pattern>
   </servlet-mapping>
   
   <session-config>

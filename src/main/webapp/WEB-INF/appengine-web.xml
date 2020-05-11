@@ -7,6 +7,16 @@
 
   <system-properties>
     <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
+<<<<<<< Updated upstream
+=======
+    <property name="drivername" value="com.mysql.jdbc.Driver"/>
+    <property name="username" value="root"/>
+    <property name="password" value="1234"/>
+    <property name="localusername" value="root"/>
+    <property name="localpassword" value="1234"/>
+    <property name="databasename" value="vaalikone"/>
+    
+>>>>>>> Stashed changes
   </system-properties>
 
 </appengine-web-app>
